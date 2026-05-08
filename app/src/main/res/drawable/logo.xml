@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vector approximation of the Lords & Legends mark.
+     For the real mark, drop logo.png into res/drawable/ and reference R.drawable.logo. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="220dp"
+    android:height="220dp"
+    android:viewportWidth="220"
+    android:viewportHeight="220">
+
+    <!-- outer steel-blue brushstroke ring -->
+    <path
+        android:strokeColor="#6F8B9E"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:pathData="M 110,20 A 90,90 0 1 1 109.99,20" />
+
+    <!-- inner ink ring (broken to feel hand-drawn) -->
+    <path
+        android:strokeColor="#1F2A39"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:pathData="M 30,110 A 80,80 0 0 1 190,110" />
+    <path
+        android:strokeColor="#1F2A39"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:pathData="M 35,118 A 75,75 0 0 0 185,118" />
+
+    <!-- copper flame -->
+    <path
+        android:fillColor="#D27A55"
+        android:strokeColor="#AD5A3A"
+        android:strokeWidth="0.8"
+        android:pathData="M110,42 C 102,58 96,66 100,78 C 92,72 90,62 96,52 C 88,60 86,72 92,82 C 96,90 108,94 110,94 C 112,94 124,90 128,82 C 134,72 132,60 124,52 C 130,62 128,72 120,78 C 124,66 118,58 110,42 Z" />
+
+</vector>

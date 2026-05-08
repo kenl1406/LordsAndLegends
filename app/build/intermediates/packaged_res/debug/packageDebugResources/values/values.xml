@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ll_copper">#D27A55</color>
+    <color name="ll_ink">#1C2532</color>
+    <color name="ll_navy">#1F2A39</color>
+    <color name="ll_parchment">#F3E9D6</color>
+    <color name="ll_parchment_2">#F7EFE0</color>
+    <color name="ll_white">#FFFFFFFF</color>
+    <string name="app_name">Lords &amp; Legends</string>
+    <style name="Theme.LordsAndLegends" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/ll_parchment</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/ll_parchment_2</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>

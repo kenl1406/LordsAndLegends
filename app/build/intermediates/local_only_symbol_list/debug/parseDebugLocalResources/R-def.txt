@@ -1,0 +1,16 @@
+R_DEF: Internal format may change without notice
+local
+color ll_copper
+color ll_ink
+color ll_navy
+color ll_parchment
+color ll_parchment_2
+color ll_white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable logo
+drawable lords
+mipmap ic_launcher
+string app_name
+style Theme.LordsAndLegends
+xml backup_rules

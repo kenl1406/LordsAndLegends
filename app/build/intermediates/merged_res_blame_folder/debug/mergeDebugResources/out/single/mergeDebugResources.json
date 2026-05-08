@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.lordsandlegends.crew.app-debug-47:/drawable_lords.png.flat",
+        "source": "com.lordsandlegends.crew.app-main-49:/drawable/lords.png"
+    },
+    {
+        "merged": "com.lordsandlegends.crew.app-debug-47:/xml_backup_rules.xml.flat",
+        "source": "com.lordsandlegends.crew.app-main-49:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.lordsandlegends.crew.app-debug-47:/drawable_logo.xml.flat",
+        "source": "com.lordsandlegends.crew.app-main-49:/drawable/logo.xml"
+    },
+    {
+        "merged": "com.lordsandlegends.crew.app-debug-47:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.lordsandlegends.crew.app-main-49:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.lordsandlegends.crew.app-debug-47:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.lordsandlegends.crew.app-main-49:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.lordsandlegends.crew.app-debug-47:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.lordsandlegends.crew.app-main-49:/drawable/ic_launcher_background.xml"
+    }
+]
