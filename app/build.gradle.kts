@@ -57,6 +57,11 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
+    
+    // YouTube Player Library (Reference: https://github.com/PierfrancescoSoffritti/android-youtube-player)
+    implementation(libs.youtube.player)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
 
     debugImplementation(libs.androidx.ui.tooling)
 }

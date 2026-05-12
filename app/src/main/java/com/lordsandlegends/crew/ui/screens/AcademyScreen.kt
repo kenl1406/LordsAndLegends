@@ -237,7 +237,8 @@ private fun ModuleRow(m: ModuleData) {
         }
     }
 }
-
+//here ive set up the youtube play cards u add a youtube video by add the last v=code for example
+//https://www.youtube.com/watch?v=6Zy5VLcEbZc the 6Zy5VLcEbZc is the id for the youtube video
 private val COCKTAIL_VIDEOS = listOf(
     VideoCardData(
         key = "cocktail-1",
@@ -246,6 +247,7 @@ private val COCKTAIL_VIDEOS = listOf(
         desc = "how to make a blue lagon.",
         duration = "4:12",
         gradient = listOf(Color(0xFF2A1A14), Color(0xFF5A2C1D)),
+        youtubeId = "APzwFz70XPQ",
     ),
     VideoCardData(
         key = "cocktail-2",
@@ -254,6 +256,7 @@ private val COCKTAIL_VIDEOS = listOf(
         desc = "How to make a strawberry daiquiri",
         duration = "5:48",
         gradient = listOf(Color(0xFF3D2A1A), Color(0xFF8A5A35)),
+        youtubeId = "H2QD90xrJRU",
     ),
     VideoCardData(
         key = "cocktail-3",
@@ -262,6 +265,7 @@ private val COCKTAIL_VIDEOS = listOf(
         desc = "How to make a lords special",
         duration = "3:36",
         gradient = listOf(Color(0xFF1A1A26), Color(0xFF44292D)),
+        youtubeId = "bdyHcyrXEQ8",
     ),
 )
 
@@ -273,6 +277,7 @@ private val PILOT_VIDEOS = listOf(
         desc = "From sit-down to fired in the kitchen, in under a minute.",
         duration = "6:20",
         gradient = listOf(Color(0xFF1F2A39), Color(0xFF3A4F66)),
+        youtubeId = "XvlRG6uBBSY",
     ),
     VideoCardData(
         key = "pilot-2",
@@ -281,5 +286,7 @@ private val PILOT_VIDEOS = listOf(
         desc = "How to handle complicated bills without holding up the table.",
         duration = "4:55",
         gradient = listOf(Color(0xFF25334A), Color(0xFF4A5E75)),
+        //this will be the youtube link
+        youtubeId = "dQw4w9WgXcQ",
     ),
 )

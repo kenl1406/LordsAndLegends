@@ -19,13 +19,15 @@ import com.lordsandlegends.crew.ui.theme.LLType
 
 @Composable
 fun UserPased() {
+    // The base container for the whole screen
     Box(
         modifier = Modifier
             .fillMaxSize()
+            // We use a vertical gradient background to match the "Parchment" theme of the app
             .background(
                 Brush.verticalGradient(listOf(LLColors.Parchment2, LLColors.Parchment))
             ),
-        contentAlignment = Alignment.TopCenter
+        contentAlignment = Alignment.TopCenter // Aligns the Column below to the top center of the screen
     ) {
         Column(modifier = Modifier.padding(top = 64.dp, start = 24.dp, end = 24.dp)) {
 

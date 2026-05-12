@@ -90,7 +90,7 @@ private fun AppRoot() {
                 }
             }
 // this will make it so the nav bar will always be displayed unless
-            if (current != Screen.Login) {
+            if (current != Screen.Login ) {
                 BottomTabBar(
                     current = current,
                     onSelect = { current = it }

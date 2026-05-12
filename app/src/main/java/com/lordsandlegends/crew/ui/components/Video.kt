@@ -31,18 +31,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
+
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.lordsandlegends.crew.ui.theme.LLColors
 import com.lordsandlegends.crew.ui.theme.LLType
 
+//here we define what the youtube video is by title we can add there thumbnails and a descrition this is the
+//videos view model
 data class VideoSheetState(
-    val cat: String,
-    val title: String,
-    val desc: String,
+    val cat: String,      // Category (e.g., "Cocktail")
+    val title: String,    // Video Title
+    val desc: String,     // Short description
+    val youtubeId: String, // The YouTube ID used by the player
 )
 
 data class VideoCardData(
@@ -52,6 +57,7 @@ data class VideoCardData(
     val desc: String,
     val duration: String,
     val gradient: List<Color>,
+    val youtubeId: String,
 )
 
 @Composable
@@ -97,31 +103,24 @@ private fun VideoCard(card: VideoCardData, onPlay: (VideoSheetState) -> Unit) {
             .background(LLColors.Surface, RoundedCornerShape(16.dp))
             .border(1.dp, LLColors.Line, RoundedCornerShape(16.dp))
             .clip(RoundedCornerShape(16.dp))
-            .clickable { onPlay(VideoSheetState(card.cat, card.title, card.desc)) },
+            .clickable { onPlay(VideoSheetState(card.cat, card.title, card.desc, card.youtubeId)) },
     ) {
-        // thumbnail
+        // Thumbnail from YouTube
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(130.dp)
-                .background(Brush.linearGradient(card.gradient)),
+                .height(130.dp),
             contentAlignment = Alignment.Center,
         ) {
-            // play button
-            Box(
-                modifier = Modifier
-                    .size(48.dp)
-                    .background(Color.White.copy(alpha = 0.92f), CircleShape),
-                contentAlignment = Alignment.Center,
-            ) {
-                Icon(
-                    Icons.Filled.PlayArrow,
-                    contentDescription = "Play",
-                    tint = LLColors.CopperDeep,
-                    modifier = Modifier.size(22.dp),
-                )
-            }
-            // duration pill
+            // This loads the real thumbnail from YouTube's servers
+            AsyncImage(
+                model = "https://img.youtube.com/vi/${card.youtubeId}/hqdefault.jpg",
+                contentDescription = card.title,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop // Crops the image to fill the 130dp height perfectly
+            )
+
+            // Duration pill (keep this so users know how long the video is)
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
@@ -159,51 +158,16 @@ fun VideoSheet(state: VideoSheetState, onDismiss: () -> Unit) {
     ) {
         Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp).padding(bottom = 30.dp)) {
 
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(top = 14.dp),
-                horizontalArrangement = Arrangement.End,
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(36.dp)
-                        .background(LLColors.Surface, CircleShape)
-                        .border(1.dp, LLColors.Line, CircleShape)
-                        .clickable(onClick = onDismiss),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Icon(Icons.Outlined.Close, contentDescription = "Close", modifier = Modifier.size(16.dp))
-                }
-            }
+
 
             Spacer(Modifier.height(12.dp))
 
-            // mock video player area
-            Box(
+            YouTubePlayer(
+                videoId = state.youtubeId,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .aspectRatio(16f / 9f)
-                    .clip(RoundedCornerShape(14.dp))
-                    .background(
-                        Brush.linearGradient(
-                            listOf(Color(0xFF14202E), Color(0xFF050A12))
-                        )
-                    ),
-                contentAlignment = Alignment.Center,
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(64.dp)
-                        .background(Color.White.copy(alpha = 0.94f), CircleShape),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Icon(
-                        Icons.Filled.PlayArrow,
-                        contentDescription = "Play",
-                        tint = LLColors.CopperDeep,
-                        modifier = Modifier.size(32.dp),
-                    )
-                }
-            }
+                    .aspectRatio(16f / 9f) // Keeps the video in standard widescreen ratio so it works on the phone beter
+            )
 
             Spacer(Modifier.height(14.dp))
             Eyebrow(state.cat)
