@@ -34,6 +34,8 @@ import com.lordsandlegends.crew.ui.screens.ProfileScreen
 import com.lordsandlegends.crew.ui.theme.LLColors
 import com.lordsandlegends.crew.ui.theme.LordsAndLegendsTheme
 import com.lordsandlegends.crew.ui.screens.UserPased
+import com.lordsandlegends.crew.ui.screens.PoliciesScreen
+import com.lordsandlegends.crew.ui.screens.OnboardingDetailsScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +51,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun AppRoot() {
-    var current by rememberSaveable { mutableStateOf(Screen.PASSED) }
+    var current by rememberSaveable { mutableStateOf(Screen.Login) }
     var sheet by rememberSaveable { mutableStateOf<VideoSheetState?>(null) }
 
     Box(
@@ -71,8 +73,13 @@ private fun AppRoot() {
             ) { screen ->
                 when (screen) {
                     Screen.PASSED -> UserPased()
+                    Screen.Login -> LoginScreen(onSignIn = { current = Screen.Policies })
+                    Screen.Policies -> PoliciesScreen(onNext = { current = Screen.OnboardingDetails })
+                    Screen.OnboardingDetails -> OnboardingDetailsScreen(
+                        onSubmit = { current = Screen.Overview },
+                        onBack = { current = Screen.Policies },
+                    )
                     // This tells the app: if the state is HR, show this screen
-                    Screen.Login -> LoginScreen(onSignIn = { current = Screen.Overview })
                     Screen.Overview -> OverviewScreen(
                         onAcademy = { current = Screen.Academy },
                         onPerformance = { current = Screen.Performance }
@@ -90,7 +97,7 @@ private fun AppRoot() {
                 }
             }
 // this will make it so the nav bar will always be displayed unless
-            if (current != Screen.Login ) {
+            if (current != Screen.Login && current != Screen.Policies && current != Screen.OnboardingDetails) {
                 BottomTabBar(
                     current = current,
                     onSelect = { current = it }

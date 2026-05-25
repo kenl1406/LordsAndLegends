@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -37,7 +38,7 @@ import com.lordsandlegends.crew.ui.theme.LLColors
 import com.lordsandlegends.crew.ui.theme.LLType
 
 
-enum class Screen { Login, Overview, Academy, Performance, Profile, PASSED }
+enum class Screen { Login, Policies, OnboardingDetails, Overview, Academy, Performance, Profile, PASSED }
 
 /* ---------------------------------------------------------- */
 
@@ -189,12 +190,14 @@ fun CopperButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .alpha(if (enabled) 1f else 0.5f)
             .background(LLColors.Copper, RoundedCornerShape(12.dp))
-            .clickable(onClick = onClick)
+            .let { if (enabled) it.clickable(onClick = onClick) else it }
             .padding(vertical = 14.dp),
         contentAlignment = Alignment.Center,
     ) {
