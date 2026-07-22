@@ -237,8 +237,8 @@ private fun ModuleRow(m: ModuleData) {
         }
     }
 }
-//here ive set up the youtube play cards u add a youtube video by add the last v=code for example
-//https://www.youtube.com/watch?v=6Zy5VLcEbZc the 6Zy5VLcEbZc is the id for the youtube video
+//here ive set up the YouTube play cards u add a YouTube video by add the last v=code for example
+//https://www.YouTube.com/watch?v=6Zy5VLcEbZc the 6Zy5VLcEbZc is the id for the YouTube video
 private val COCKTAIL_VIDEOS = listOf(
     VideoCardData(
         key = "cocktail-1",
@@ -286,7 +286,7 @@ private val PILOT_VIDEOS = listOf(
         desc = "How to handle complicated bills without holding up the table.",
         duration = "4:55",
         gradient = listOf(Color(0xFF25334A), Color(0xFF4A5E75)),
-        //this will be the youtube link
+        //this will be the YouTube link
         youtubeId = "dQw4w9WgXcQ",
     ),
 )
