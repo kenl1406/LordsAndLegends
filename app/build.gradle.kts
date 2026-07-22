@@ -47,6 +47,10 @@ android {
 }
 
 dependencies {
+
+    implementation("com.tom-roush:pdfbox-android:2.0.27.0")
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -62,6 +66,7 @@ dependencies {
     implementation(libs.youtube.player)
     implementation(libs.coil.compose)
     implementation(libs.coil.network)
+
 
     debugImplementation(libs.androidx.ui.tooling)
 }

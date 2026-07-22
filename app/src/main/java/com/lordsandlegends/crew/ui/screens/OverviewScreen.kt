@@ -39,9 +39,10 @@ import com.lordsandlegends.crew.ui.components.SectionHeading
 import com.lordsandlegends.crew.ui.components.TopBar
 import com.lordsandlegends.crew.ui.theme.LLColors
 import com.lordsandlegends.crew.ui.theme.LLType
+import androidx.compose.material.icons.outlined.Description
 
 @Composable
-fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit) {
+fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts: () -> Unit,) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -85,6 +86,16 @@ fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit) {
             artFg = androidx.compose.ui.graphics.Color.White,
             onClick = onPerformance,
             mini = listOf("This week" to "R 18,240" ),
+        )
+        Tile(
+            eyebrow = "",
+            title = "Contracts",
+            copy = "Upload contracts for staff to review and sign on their phone.",
+            cta = "Manage contracts",
+            artIcon = Icons.Outlined.Description,
+            artBg = LLColors.Navy,
+            artFg = androidx.compose.ui.graphics.Color.White,
+            onClick = onContracts,
         )
 
         SectionHeading("Managers notes for the day")

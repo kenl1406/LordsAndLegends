@@ -36,6 +36,11 @@ import com.lordsandlegends.crew.ui.theme.LordsAndLegendsTheme
 import com.lordsandlegends.crew.ui.screens.UserPased
 import com.lordsandlegends.crew.ui.screens.PoliciesScreen
 import com.lordsandlegends.crew.ui.screens.OnboardingDetailsScreen
+import com.lordsandlegends.crew.data.Contract
+import com.lordsandlegends.crew.ui.screens.Hrscreen
+import com.lordsandlegends.crew.ui.screens.SignContractScreen
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,10 +54,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
 private fun AppRoot() {
     var current by rememberSaveable { mutableStateOf(Screen.Login) }
     var sheet by rememberSaveable { mutableStateOf<VideoSheetState?>(null) }
+
+    // shared contract list + which one is being signed
+    val contracts = remember { mutableStateListOf<Contract>() }
+    var selectedContract by remember { mutableStateOf<Contract?>(null) }
 
     Box(
         modifier = Modifier
@@ -66,9 +76,7 @@ private fun AppRoot() {
                     (fadeIn(tween(220)) + slideInVertically(tween(220)) { it / 24 })
                         .togetherWith(fadeOut(tween(140)))
                 },
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxSize(),
+                modifier = Modifier.weight(1f).fillMaxSize(),
                 label = "screen"
             ) { screen ->
                 when (screen) {
@@ -79,34 +87,42 @@ private fun AppRoot() {
                         onSubmit = { current = Screen.Overview },
                         onBack = { current = Screen.Policies },
                     )
-                    // This tells the app: if the state is HR, show this screen
                     Screen.Overview -> OverviewScreen(
                         onAcademy = { current = Screen.Academy },
-                        onPerformance = { current = Screen.Performance }
+                        onPerformance = { current = Screen.Performance },
+                        onContracts = { current = Screen.Contracts },
                     )
                     Screen.Academy -> AcademyScreen(
                         onBack = { current = Screen.Overview },
                         onPlayVideo = { sheet = it }
                     )
-                    Screen.Performance -> PerformanceScreen(
-                        onBack = { current = Screen.Overview }
+                    Screen.Performance -> PerformanceScreen(onBack = { current = Screen.Overview })
+                    Screen.Profile -> ProfileScreen(onSignOut = { current = Screen.Login })
+
+                    Screen.Contracts -> Hrscreen(
+                        contracts = contracts,
+                        onContractAdded = { contracts.add(it) },
+                        onContractTapped = {
+                            selectedContract = it
+                            current = Screen.SignContract
+                        },
                     )
-                    Screen.Profile -> ProfileScreen(
-                        onSignOut = { current = Screen.Login }
-                    )
+                    Screen.SignContract -> selectedContract?.let { contract ->
+                        SignContractScreen(
+                            contract = contract,
+                            onSigned = { current = Screen.Contracts },
+                        )
+                    }
                 }
             }
-// this will make it so the nav bar will always be displayed unless
-            if (current != Screen.Login && current != Screen.Policies && current != Screen.OnboardingDetails) {
-                BottomTabBar(
-                    current = current,
-                    onSelect = { current = it }
-                )
+
+            if (current != Screen.Login && current != Screen.Policies &&
+                current != Screen.OnboardingDetails && current != Screen.SignContract
+            ) {
+                BottomTabBar(current = current, onSelect = { current = it })
             }
         }
 
-        sheet?.let {
-            VideoSheet(state = it, onDismiss = { sheet = null })
-        }
+        sheet?.let { VideoSheet(state = it, onDismiss = { sheet = null }) }
     }
 }
