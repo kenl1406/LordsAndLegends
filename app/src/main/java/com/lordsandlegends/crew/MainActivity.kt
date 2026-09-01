@@ -41,6 +41,7 @@ import com.lordsandlegends.crew.ui.screens.Hrscreen
 import com.lordsandlegends.crew.ui.screens.SignContractScreen
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import com.lordsandlegends.crew.ui.screens.WarningsPerformanceScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,6 +92,7 @@ private fun AppRoot() {
                         onAcademy = { current = Screen.Academy },
                         onPerformance = { current = Screen.Performance },
                         onContracts = { current = Screen.Contracts },
+                        onWarnings = { current = Screen.Warnings }
                     )
                     Screen.Academy -> AcademyScreen(
                         onBack = { current = Screen.Overview },
@@ -113,6 +115,10 @@ private fun AppRoot() {
                             onSigned = { current = Screen.Contracts },
                         )
                     }
+
+                    Screen.Warnings -> WarningsPerformanceScreen(
+                        onBack = { current = Screen.Overview }
+                    )
                 }
             }
 

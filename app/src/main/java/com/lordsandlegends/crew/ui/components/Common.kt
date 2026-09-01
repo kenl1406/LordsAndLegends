@@ -47,7 +47,9 @@ enum class Screen { Login,
     Profile,
     PASSED,
     Contracts,
-    SignContract
+    SignContract,
+
+    Warnings
 }
 
 /* ---------------------------------------------------------- */
