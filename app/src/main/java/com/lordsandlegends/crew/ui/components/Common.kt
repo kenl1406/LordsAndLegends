@@ -49,7 +49,9 @@ enum class Screen { Login,
     Contracts,
     SignContract,
 
-    Warnings
+    Warnings,
+    LeaveManagement,
+    OnboardingOffboarding
 }
 
 /* ---------------------------------------------------------- */
