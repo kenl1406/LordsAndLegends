@@ -1,4 +1,0 @@
-com.lordsandlegends.crew.test.app-androidTest-0 C:\Users\USER-PC\Desktop\LordsAndLegends\app\build\generated\res\resValues\androidTest\debug
-com.lordsandlegends.crew.test.app-mergeDebugAndroidTestResources-1 C:\Users\USER-PC\Desktop\LordsAndLegends\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-com.lordsandlegends.crew.test.app-mergeDebugAndroidTestResources-2 C:\Users\USER-PC\Desktop\LordsAndLegends\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-com.lordsandlegends.crew.test.app-debugAndroidTest-3 C:\Users\USER-PC\Desktop\LordsAndLegends\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

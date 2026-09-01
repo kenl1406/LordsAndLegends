@@ -1,4 +1,0 @@
-#Wed May 06 18:30:23 SAST 2026
-base.0=C\:\\Users\\USER-PC\\Desktop\\LordsAndLegends\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
-path.0=0/classes.dex
-renamed.0=classes.dex

@@ -1,0 +1,9 @@
+@"
+/build/
+/app/build/
+*/build/
+.gradle/
+.idea/
+*.iml
+local.properties
+"@ | Out-File -Encoding utf8 .gitignore
