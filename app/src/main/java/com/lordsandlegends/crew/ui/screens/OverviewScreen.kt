@@ -40,9 +40,10 @@ import com.lordsandlegends.crew.ui.components.TopBar
 import com.lordsandlegends.crew.ui.theme.LLColors
 import com.lordsandlegends.crew.ui.theme.LLType
 import androidx.compose.material.icons.outlined.Description
+import androidx.compose.material.icons.outlined.Warning
 
 @Composable
-fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts: () -> Unit,) {
+fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts: () -> Unit,  onWarnings: () -> Unit,) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -96,6 +97,17 @@ fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts
             artBg = LLColors.Navy,
             artFg = androidx.compose.ui.graphics.Color.White,
             onClick = onContracts,
+        )
+
+        Tile(
+            eyebrow = "",
+            title = "Warnings & Performance",
+            copy = "Manage staff warnings and performance notes.",
+            cta = "View records",
+            artIcon = Icons.Outlined.Warning,  // You may want a different icon
+            artBg = LLColors.Bad,
+            artFg = androidx.compose.ui.graphics.Color.White,
+            onClick = onWarnings,
         )
 
         SectionHeading("Managers notes for the day")
