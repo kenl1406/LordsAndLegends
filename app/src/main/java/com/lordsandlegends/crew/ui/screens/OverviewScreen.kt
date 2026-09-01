@@ -41,9 +41,13 @@ import com.lordsandlegends.crew.ui.theme.LLColors
 import com.lordsandlegends.crew.ui.theme.LLType
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material.icons.outlined.EventAvailable
+import androidx.compose.material.icons.outlined.SwitchAccount
 
 @Composable
-fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts: () -> Unit,  onWarnings: () -> Unit,) {
+fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts: () -> Unit,  onWarnings: () -> Unit,
+                   onLeaveManagement: () -> Unit,
+                   onOnboardingOffboarding: () -> Unit,) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -108,6 +112,27 @@ fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts
             artBg = LLColors.Bad,
             artFg = androidx.compose.ui.graphics.Color.White,
             onClick = onWarnings,
+        )
+        Tile(
+            eyebrow = "",
+            title = "Leave Management",
+            copy = "Review balances, approve requests, and log time off.",
+            cta = "Manage leave",
+            artIcon = Icons.Outlined.EventAvailable,
+            artBg = LLColors.Steel,
+            artFg = androidx.compose.ui.graphics.Color.White,
+            onClick = onLeaveManagement,
+        )
+
+        Tile(
+            eyebrow = "",
+            title = "Onboarding & Offboarding",
+            copy = "Track checklists for staff joining and leaving the team.",
+            cta = "View checklists",
+            artIcon = Icons.Outlined.SwitchAccount,
+            artBg = LLColors.CopperSoft,
+            artFg = LLColors.CopperDeep,
+            onClick = onOnboardingOffboarding,
         )
 
         SectionHeading("Managers notes for the day")
