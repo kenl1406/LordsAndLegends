@@ -51,7 +51,9 @@ enum class Screen { Login,
 
     Warnings,
     LeaveManagement,
-    OnboardingOffboarding
+    OnboardingOffboarding,
+    TimeAttendance,
+    SelfService
 }
 
 /* ---------------------------------------------------------- */
@@ -302,4 +304,4 @@ fun emphasizedSentence(prefix: String, italicCopper: String, suffix: String) =
             append(italicCopper)
         }
         append(suffix)
-    }
+    }
