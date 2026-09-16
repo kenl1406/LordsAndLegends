@@ -43,11 +43,15 @@ import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.Warning
 import androidx.compose.material.icons.outlined.EventAvailable
 import androidx.compose.material.icons.outlined.SwitchAccount
+import androidx.compose.material.icons.outlined.Schedule
+import androidx.compose.material.icons.outlined.PhoneAndroid
 
 @Composable
 fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts: () -> Unit,  onWarnings: () -> Unit,
                    onLeaveManagement: () -> Unit,
-                   onOnboardingOffboarding: () -> Unit,) {
+                   onOnboardingOffboarding: () -> Unit,
+                   onTimeAttendance: () -> Unit = {},
+                   onSelfService: () -> Unit = {},) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -133,6 +137,28 @@ fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts
             artBg = LLColors.CopperSoft,
             artFg = LLColors.CopperDeep,
             onClick = onOnboardingOffboarding,
+        )
+
+        Tile(
+            eyebrow = "",
+            title = "Time & Attendance",
+            copy = "Clock in and out of your shift and see your hours.",
+            cta = "Open clock",
+            artIcon = Icons.Outlined.Schedule,
+            artBg = LLColors.Ink,
+            artFg = LLColors.CopperSoft,
+            onClick = onTimeAttendance,
+        )
+
+        Tile(
+            eyebrow = "",
+            title = "Self-Service",
+            copy = "Your profile, payslips and leave balance. Managers approve requests here.",
+            cta = "Open portal",
+            artIcon = Icons.Outlined.PhoneAndroid,
+            artBg = LLColors.Parchment,
+            artFg = LLColors.Navy,
+            onClick = onSelfService,
         )
 
         SectionHeading("Managers notes for the day")

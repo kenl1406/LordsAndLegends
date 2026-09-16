@@ -44,6 +44,9 @@ import androidx.compose.runtime.remember
 import com.lordsandlegends.crew.ui.screens.WarningsPerformanceScreen
 import com.lordsandlegends.crew.ui.screens.LeaveManagementScreen
 import com.lordsandlegends.crew.ui.screens.OnboardingOffboardingScreen
+import com.lordsandlegends.crew.ui.screens.TimeAttendanceScreen
+import com.lordsandlegends.crew.ui.screens.SelfServiceScreen
+import com.lordsandlegends.crew.ui.screens.ClockStatus
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +69,9 @@ private fun AppRoot() {
     // shared contract list + which one is being signed
     val contracts = remember { mutableStateListOf<Contract>() }
     var selectedContract by remember { mutableStateOf<Contract?>(null) }
+
+    // clock-in status (UI only — manager accept/decline will update this via Supabase later)
+    var clockStatus by rememberSaveable { mutableStateOf(ClockStatus.OFF_SHIFT) }
 
     Box(
         modifier = Modifier
@@ -97,6 +103,8 @@ private fun AppRoot() {
                         onWarnings = { current = Screen.Warnings },
                         onLeaveManagement = { current = Screen.LeaveManagement },
                         onOnboardingOffboarding = { current = Screen.OnboardingOffboarding },
+                        onTimeAttendance = { current = Screen.TimeAttendance },
+                        onSelfService = { current = Screen.SelfService },
                     )
                     Screen.Academy -> AcademyScreen(
                         onBack = { current = Screen.Overview },
@@ -133,6 +141,22 @@ private fun AppRoot() {
                     Screen.OnboardingOffboarding -> OnboardingOffboardingScreen(
                         onBack = { current = Screen.Overview }
                     )
+
+                    Screen.TimeAttendance -> TimeAttendanceScreen(
+                        onBack = { current = Screen.Overview },
+                        status = clockStatus,
+                        onStartShift = { clockStatus = ClockStatus.CLOCK_IN_PENDING },
+                        onCancelRequest = {
+                            clockStatus = if (clockStatus == ClockStatus.BREAK_PENDING) ClockStatus.ON_SHIFT else ClockStatus.OFF_SHIFT
+                        },
+                        onRequestBreak = { clockStatus = ClockStatus.BREAK_PENDING },
+                        onEndBreak = { clockStatus = ClockStatus.ON_SHIFT },
+                        onEndShift = { clockStatus = ClockStatus.OFF_SHIFT },
+                    )
+
+                    Screen.SelfService -> SelfServiceScreen(
+                        onBack = { current = Screen.Overview }
+                    )
                 }
             }
 
@@ -145,4 +169,4 @@ private fun AppRoot() {
 
         sheet?.let { VideoSheet(state = it, onDismiss = { sheet = null }) }
     }
-}
+}
