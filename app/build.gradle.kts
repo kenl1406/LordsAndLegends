@@ -1,7 +1,18 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+     alias(libs.plugins.kotlin.serialization)
+}
+
+val localProps = Properties().apply {
+    val f = rootProject.file("local.properties")
+    if (f.exists()) load(FileInputStream(f))
 }
 
 android {
@@ -14,6 +25,8 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
+        buildConfigField("String", "SUPABASE_URL", "\"${localProps["SUPABASE_URL"]}\"")
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"${localProps["SUPABASE_ANON_KEY"]}\"")
     }
 
     buildTypes {
@@ -29,6 +42,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+             isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -37,6 +51,7 @@ android {
 
     buildFeatures {
         compose = true
+         buildConfig = true
     }
 
     packaging {
@@ -47,6 +62,20 @@ android {
 }
 
 dependencies {
+
+
+
+coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+//superbase
+
+    implementation(platform(libs.supabase.bom))
+    implementation(libs.supabase.postgrest)
+    implementation(libs.supabase.auth)
+    implementation(libs.supabase.storage)
+    implementation(libs.supabase.realtime)
+    implementation(libs.ktor.client.android)
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.androidx.lifecycle.viewmodel)
 
     implementation("com.tom-roush:pdfbox-android:2.0.27.0")
 

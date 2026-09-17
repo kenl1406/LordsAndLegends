@@ -2,6 +2,10 @@
 agp = "8.7.3"
 kotlin = "2.0.21"
 coreKtx = "1.15.0"
+supabase = "3.1.1"
+ktor = "3.0.3"
+kotlinxDatetime = "0.6.1"
+lifecycleViewmodel = "2.8.7"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.12.01"
@@ -9,6 +13,15 @@ youtubePlayer = "13.0.0"
 coil = "3.1.0"
 
 [libraries]
+# superbase libaries 
+supabase-bom        = { group = "io.github.jan-tennert.supabase", name = "bom", version.ref = "supabase" }
+supabase-postgrest  = { group = "io.github.jan-tennert.supabase", name = "postgrest-kt" }
+supabase-auth       = { group = "io.github.jan-tennert.supabase", name = "auth-kt" }
+supabase-storage    = { group = "io.github.jan-tennert.supabase", name = "storage-kt" }
+supabase-realtime   = { group = "io.github.jan-tennert.supabase", name = "realtime-kt" }
+ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+kotlinx-datetime    = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
+androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodel" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -27,3 +40,4 @@ coil-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", versi
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
