@@ -35,12 +35,12 @@ class LoginViewModel(
     private val _state = MutableStateFlow(LoginState())
     val state: StateFlow<LoginState> = _state.asStateFlow()
 
-    fun signIn(email: String, password: String) = viewModelScope.launch {
+    fun signIn(emailInput: String, passwordInput: String) = viewModelScope.launch {
         _state.update { it.copy(loading = true, error = null) }
         runCatching {
             client.auth.signInWith(Email) {
-                this.email = email
-                this.password = password
+                this.email = emailInput
+                this.password = passwordInput
             }
             val uid = client.auth.currentUserOrNull()?.id
                 ?: error("No session after sign-in")
