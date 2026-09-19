@@ -24,12 +24,12 @@ import androidx.compose.material.icons.outlined.Badge
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Email
-import androidx.compose.material.icons.outlined.EventNote
+import androidx.compose.material.icons.automirrored.outlined.EventNote
 import androidx.compose.material.icons.outlined.FileDownload
 import androidx.compose.material.icons.outlined.Inbox
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Phone
-import androidx.compose.material.icons.outlined.ReceiptLong
+import androidx.compose.material.icons.outlined.Payments
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -136,7 +136,7 @@ private fun EmployeePortal(
 
     SectionHeading("Leave balance")
     if (leaveBalances.isEmpty()) {
-        EmptyCard(Icons.Outlined.EventNote, "No leave balance yet", "Your leave days will show here.")
+        EmptyCard(Icons.AutoMirrored.Outlined.EventNote, "No leave balance yet", "Your leave days will show here.")
     } else {
         leaveBalances.chunked(3).forEach { row ->
             Row(
@@ -153,7 +153,7 @@ private fun EmployeePortal(
 
     SectionHeading("Payslips", sub = "Tap a payslip to view or download it.")
     if (payslips.isEmpty()) {
-        EmptyCard(Icons.Outlined.ReceiptLong, "No payslips yet", "Payslips will appear here once payroll is run.")
+        EmptyCard(Icons.Outlined.Payments, "No payslips yet", "Payslips will appear here once payroll is run.")
     } else {
         Column(
             modifier = Modifier
@@ -288,7 +288,7 @@ private fun PayslipRow(slip: PayslipUi, latest: Boolean, onClick: () -> Unit) {
                 .background(if (latest) LLColors.Copper else LLColors.Parchment, RoundedCornerShape(12.dp)),
             contentAlignment = Alignment.Center,
         ) {
-            Icon(Icons.Outlined.ReceiptLong, null, tint = if (latest) Color.White else LLColors.CopperDeep, modifier = Modifier.size(18.dp))
+            Icon(Icons.Outlined.Payments, null, tint = if (latest) Color.White else LLColors.CopperDeep, modifier = Modifier.size(18.dp))
         }
         Spacer(Modifier.width(12.dp))
         Column(modifier = Modifier.weight(1f)) {

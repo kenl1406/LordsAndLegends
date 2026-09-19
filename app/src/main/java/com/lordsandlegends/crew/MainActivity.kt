@@ -47,6 +47,8 @@ import com.lordsandlegends.crew.ui.screens.OnboardingOffboardingScreen
 import com.lordsandlegends.crew.ui.screens.TimeAttendanceScreen
 import com.lordsandlegends.crew.ui.screens.SelfServiceScreen
 import com.lordsandlegends.crew.ui.screens.ClockStatus
+import com.lordsandlegends.crew.data.model.Staff
+import com.lordsandlegends.crew.data.model.StaffRole
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,6 +72,9 @@ private fun AppRoot() {
     val contracts = remember { mutableStateListOf<Contract>() }
     var selectedContract by remember { mutableStateOf<Contract?>(null) }
 
+    // who is signed in — set by LoginScreen, used later to build the role-based graph
+    var signedInStaff by remember { mutableStateOf<Staff?>(null) }
+
     // clock-in status (UI only — manager accept/decline will update this via Supabase later)
     var clockStatus by rememberSaveable { mutableStateOf(ClockStatus.OFF_SHIFT) }
 
@@ -90,7 +95,12 @@ private fun AppRoot() {
             ) { screen ->
                 when (screen) {
                     Screen.PASSED -> UserPased()
-                    Screen.Login -> LoginScreen(onSignIn = { current = Screen.Policies })
+                    Screen.Login -> LoginScreen(
+                        onSignedIn = { staff ->
+                            signedInStaff = staff
+                            current = Screen.Policies
+                        }
+                    )
                     Screen.Policies -> PoliciesScreen(onNext = { current = Screen.OnboardingDetails })
                     Screen.OnboardingDetails -> OnboardingDetailsScreen(
                         onSubmit = { current = Screen.Overview },
@@ -155,7 +165,9 @@ private fun AppRoot() {
                     )
 
                     Screen.SelfService -> SelfServiceScreen(
-                        onBack = { current = Screen.Overview }
+                        onBack = { current = Screen.Overview },
+                        // managers and owners get the approvals tab, employees do not
+                        showManagerTab = signedInStaff?.role != StaffRole.EMPLOYEE,
                     )
                 }
             }

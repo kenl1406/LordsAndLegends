@@ -23,7 +23,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.School
-import androidx.compose.material.icons.outlined.TrendingUp
+import androidx.compose.material.icons.automirrored.outlined.TrendingUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -90,7 +90,7 @@ fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts
             title = "My Performance",
             copy = "Track your covers, sales and tips — week by week.",
             cta = "View dashboard",
-            artIcon = Icons.Outlined.TrendingUp,
+            artIcon = Icons.AutoMirrored.Outlined.TrendingUp,
             artBg = LLColors.Copper,
             artFg = androidx.compose.ui.graphics.Color.White,
             onClick = onPerformance,
@@ -206,23 +206,6 @@ private fun HeroCard() {
             Spacer(Modifier.height(8.dp))
 
         }
-    }
-}
-
-@Composable
-private fun ProgressBar(fraction: Float) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(3.dp)
-            .background(LLColors.Parchment, RoundedCornerShape(99.dp))
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth(fraction.coerceIn(0f, 1f))
-                .height(3.dp)
-                .background(LLColors.Copper, RoundedCornerShape(99.dp))
-        )
     }
 }
 
