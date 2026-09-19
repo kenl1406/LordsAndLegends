@@ -1,9 +1,10 @@
-@"
+*.iml
+.gradle/
+.idea/
 /build/
 /app/build/
 */build/
-.gradle/
-.idea/
-*.iml
+/captures/
+.externalNativeBuild/
+.cxx/
 local.properties
-"@ | Out-File -Encoding utf8 .gitignore
