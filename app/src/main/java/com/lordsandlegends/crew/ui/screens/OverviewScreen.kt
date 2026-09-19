@@ -45,13 +45,20 @@ import androidx.compose.material.icons.outlined.EventAvailable
 import androidx.compose.material.icons.outlined.SwitchAccount
 import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material.icons.outlined.PhoneAndroid
+// new imports
+import com.lordsandlegends.crew.data.model.Staff
+import com.lordsandlegends.crew.data.model.StaffRole
 
 @Composable
-fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts: () -> Unit,  onWarnings: () -> Unit,
+fun OverviewScreen(staff: Staff,
+                   onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts: () -> Unit,  onWarnings: () -> Unit,
                    onLeaveManagement: () -> Unit,
                    onOnboardingOffboarding: () -> Unit,
                    onTimeAttendance: () -> Unit = {},
                    onSelfService: () -> Unit = {},) {
+
+    val isManager = staff.role != StaffRole.EMPLOYEE
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -63,7 +70,7 @@ fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts
     ) {
         TopBar(
             greetingTop = "Good evening,",
-            greetingBottom = "James",
+            greetingBottom = staff.firstName,
             trailingIcon = Icons.Outlined.Notifications,
             onTrailing = { /* demo */ },
             trailingDot = true,
@@ -94,8 +101,10 @@ fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts
             artBg = LLColors.Copper,
             artFg = androidx.compose.ui.graphics.Color.White,
             onClick = onPerformance,
-            mini = listOf("This week" to "R 18,240" ),
+            mini = listOf("This week" to "R 18,240" ), // need to change this when performance screen comes along
         )
+        if(isManager){
+            
         Tile(
             eyebrow = "",
             title = "Contracts",
@@ -138,6 +147,7 @@ fun OverviewScreen(onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts
             artFg = LLColors.CopperDeep,
             onClick = onOnboardingOffboarding,
         )
+        }
 
         Tile(
             eyebrow = "",

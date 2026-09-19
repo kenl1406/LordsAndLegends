@@ -106,16 +106,19 @@ private fun AppRoot() {
                         onSubmit = { current = Screen.Overview },
                         onBack = { current = Screen.Policies },
                     )
-                    Screen.Overview -> OverviewScreen(
-                        onAcademy = { current = Screen.Academy },
-                        onPerformance = { current = Screen.Performance },
-                        onContracts = { current = Screen.Contracts },
-                        onWarnings = { current = Screen.Warnings },
-                        onLeaveManagement = { current = Screen.LeaveManagement },
-                        onOnboardingOffboarding = { current = Screen.OnboardingOffboarding },
-                        onTimeAttendance = { current = Screen.TimeAttendance },
-                        onSelfService = { current = Screen.SelfService },
-                    )
+                    Screen.Overview -> signedInStaff?.let { staff ->
+                        OverviewScreen(
+                            staff = staff,
+                            onAcademy = { current = Screen.Academy },
+                            onPerformance = { current = Screen.Performance },
+                            onContracts = { current = Screen.Contracts },
+                            onWarnings = { current = Screen.Warnings },
+                            onLeaveManagement = { current = Screen.LeaveManagement },
+                            onOnboardingOffboarding = { current = Screen.OnboardingOffboarding },
+                            onTimeAttendance = { current = Screen.TimeAttendance },
+                            onSelfService = { current = Screen.SelfService },
+                        )
+                    }
                     Screen.Academy -> AcademyScreen(
                         onBack = { current = Screen.Overview },
                         onPlayVideo = { sheet = it }
@@ -181,4 +184,4 @@ private fun AppRoot() {
 
         sheet?.let { VideoSheet(state = it, onDismiss = { sheet = null }) }
     }
-}
+}
