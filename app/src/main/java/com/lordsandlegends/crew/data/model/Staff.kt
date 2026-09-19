@@ -13,6 +13,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Staff(
     @SerialName("staff_id")       val staffId: Long = 0,
+    @SerialName("auth_user_id")   val authUserId: String? = null,
     @SerialName("role")           val role: StaffRole,
     @SerialName("first_name")     val firstName: String,
     @SerialName("last_name")      val lastName: String,
