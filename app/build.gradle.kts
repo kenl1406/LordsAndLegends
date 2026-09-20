@@ -54,6 +54,13 @@ android {
          buildConfig = true
     }
 
+    lint {
+        // The lifecycle library's NullSafeMutableLiveData check crashes lint on this
+        // AGP / Kotlin analysis API combination, so it is switched off. Remove this
+        // once the project moves to a newer AGP.
+        disable += "NullSafeMutableLiveData"
+    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
