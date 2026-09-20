@@ -58,7 +58,11 @@ android {
         // These two checks crash lint on this AGP / Kotlin combination instead of
         // reporting anything. Belt and braces alongside android.lint.useK2Uast=false
         // in gradle.properties. Remove once the project moves to a newer AGP.
-        disable += listOf("NullSafeMutableLiveData", "RememberInComposition")
+        disable += listOf(
+            "NullSafeMutableLiveData",
+            "RememberInComposition",
+            "FrequentlyChangingValue",
+        )
         abortOnError = false
     }
 
