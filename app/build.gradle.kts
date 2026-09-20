@@ -55,10 +55,11 @@ android {
     }
 
     lint {
-        // The lifecycle library's NullSafeMutableLiveData check crashes lint on this
-        // AGP / Kotlin analysis API combination, so it is switched off. Remove this
-        // once the project moves to a newer AGP.
-        disable += "NullSafeMutableLiveData"
+        // These two checks crash lint on this AGP / Kotlin combination instead of
+        // reporting anything. Belt and braces alongside android.lint.useK2Uast=false
+        // in gradle.properties. Remove once the project moves to a newer AGP.
+        disable += listOf("NullSafeMutableLiveData", "RememberInComposition")
+        abortOnError = false
     }
 
     packaging {
