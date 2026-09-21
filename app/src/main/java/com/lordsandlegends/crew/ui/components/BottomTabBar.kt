@@ -30,7 +30,7 @@ import com.lordsandlegends.crew.ui.theme.LLColors
 import com.lordsandlegends.crew.ui.theme.LLType
 
 @Composable
-fun BottomTabBar(current: Screen, onSelect: (Screen) -> Unit) {
+fun BottomTabBar(currentRoute: String?, onSelect: (String) -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -45,10 +45,10 @@ fun BottomTabBar(current: Screen, onSelect: (Screen) -> Unit) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Tab("Overview", Icons.Outlined.Home, current == Screen.Overview) { onSelect(Screen.Overview) }
-            Tab("Academy", Icons.Outlined.School, current == Screen.Academy) { onSelect(Screen.Academy) }
-            Tab("Performance", Icons.Outlined.BarChart, current == Screen.Performance) { onSelect(Screen.Performance) }
-            Tab("Profile", Icons.Outlined.Person, current == Screen.Profile) { onSelect(Screen.Profile) }
+            Tab("Overview", Icons.Outlined.Home, currentRoute == Routes.OVERVIEW) { onSelect(Routes.OVERVIEW) }
+            Tab("Academy", Icons.Outlined.School, currentRoute == Routes.ACADEMY) { onSelect(Routes.ACADEMY) }
+            Tab("Performance", Icons.Outlined.BarChart, currentRoute == Routes.PERFORMANCE) { onSelect(Routes.PERFORMANCE) }
+            Tab("Profile", Icons.Outlined.Person, currentRoute == Routes.PROFILE) { onSelect(Routes.PROFILE) }
         }
     }
 }

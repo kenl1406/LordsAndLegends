@@ -38,24 +38,6 @@ import com.lordsandlegends.crew.ui.theme.LLColors
 import com.lordsandlegends.crew.ui.theme.LLType
 
 
-enum class Screen { Login,
-    Policies,
-    OnboardingDetails,
-    Overview,
-    Academy,
-    Performance,
-    Profile,
-    PASSED,
-    Contracts,
-    SignContract,
-
-    Warnings,
-    LeaveManagement,
-    OnboardingOffboarding,
-    TimeAttendance,
-    SelfService
-}
-
 /* ---------------------------------------------------------- */
 
 @Composable
@@ -304,4 +286,4 @@ fun emphasizedSentence(prefix: String, italicCopper: String, suffix: String) =
             append(italicCopper)
         }
         append(suffix)
-    }
+    }

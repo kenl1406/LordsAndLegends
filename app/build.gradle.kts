@@ -54,6 +54,18 @@ android {
          buildConfig = true
     }
 
+    lint {
+        // These two checks crash lint on this AGP / Kotlin combination instead of
+        // reporting anything. Belt and braces alongside android.lint.useK2Uast=false
+        // in gradle.properties. Remove once the project moves to a newer AGP.
+        disable += listOf(
+            "NullSafeMutableLiveData",
+            "RememberInComposition",
+            "FrequentlyChangingValue",
+        )
+        abortOnError = false
+    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -76,6 +88,7 @@ coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
     implementation(libs.ktor.client.android)
     implementation(libs.kotlinx.datetime)
     implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.navigation.compose)
 
     implementation("com.tom-roush:pdfbox-android:2.0.27.0")
 
