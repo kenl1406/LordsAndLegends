@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.lordsandlegends.crew.data.model.StaffRole
 import com.lordsandlegends.crew.ui.components.Chip
 import com.lordsandlegends.crew.ui.components.Eyebrow
 import com.lordsandlegends.crew.ui.components.SectionHeading
@@ -45,20 +46,22 @@ import androidx.compose.material.icons.outlined.EventAvailable
 import androidx.compose.material.icons.outlined.SwitchAccount
 import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material.icons.outlined.PhoneAndroid
-// new imports
-import com.lordsandlegends.crew.data.model.Staff
-import com.lordsandlegends.crew.data.model.StaffRole
 
 @Composable
-fun OverviewScreen(staff: Staff,
-                   onAcademy: () -> Unit, onPerformance: () -> Unit, onContracts: () -> Unit,  onWarnings: () -> Unit,
-                   onLeaveManagement: () -> Unit,
-                   onOnboardingOffboarding: () -> Unit,
-                   onTimeAttendance: () -> Unit = {},
-                   onSelfService: () -> Unit = {},) {
-
-    val isManager = staff.role != StaffRole.EMPLOYEE
-
+fun OverviewScreen(
+    onAcademy: () -> Unit,
+    onPerformance: () -> Unit,
+    onContracts: () -> Unit,
+    onWarnings: () -> Unit,
+    onLeaveManagement: () -> Unit,
+    onOnboardingOffboarding: () -> Unit,
+    onTimeAttendance: () -> Unit = {},
+    onSelfService: () -> Unit = {},
+    role: StaffRole? = null,
+) {
+    // Manager tools. An employee has no route to these screens either, so hiding the
+    // tile and removing the destination say the same no in two places.
+    val isManager = role != StaffRole.EMPLOYEE
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -70,7 +73,7 @@ fun OverviewScreen(staff: Staff,
     ) {
         TopBar(
             greetingTop = "Good evening,",
-            greetingBottom = staff.firstName,
+            greetingBottom = "James",
             trailingIcon = Icons.Outlined.Notifications,
             onTrailing = { /* demo */ },
             trailingDot = true,
@@ -101,52 +104,51 @@ fun OverviewScreen(staff: Staff,
             artBg = LLColors.Copper,
             artFg = androidx.compose.ui.graphics.Color.White,
             onClick = onPerformance,
-            mini = listOf("This week" to "R 18,240" ), // need to change this when performance screen comes along
+            mini = listOf("This week" to "R 18,240" ),
         )
-        if(isManager){
-            
-        Tile(
-            eyebrow = "",
-            title = "Contracts",
-            copy = "Upload contracts for staff to review and sign on their phone.",
-            cta = "Manage contracts",
-            artIcon = Icons.Outlined.Description,
-            artBg = LLColors.Navy,
-            artFg = androidx.compose.ui.graphics.Color.White,
-            onClick = onContracts,
-        )
+        if (isManager) {
+            Tile(
+                eyebrow = "",
+                title = "Contracts",
+                copy = "Upload contracts for staff to review and sign on their phone.",
+                cta = "Manage contracts",
+                artIcon = Icons.Outlined.Description,
+                artBg = LLColors.Navy,
+                artFg = androidx.compose.ui.graphics.Color.White,
+                onClick = onContracts,
+            )
 
-        Tile(
-            eyebrow = "",
-            title = "Warnings & Performance",
-            copy = "Manage staff warnings and performance notes.",
-            cta = "View records",
-            artIcon = Icons.Outlined.Warning,  // You may want a different icon
-            artBg = LLColors.Bad,
-            artFg = androidx.compose.ui.graphics.Color.White,
-            onClick = onWarnings,
-        )
-        Tile(
-            eyebrow = "",
-            title = "Leave Management",
-            copy = "Review balances, approve requests, and log time off.",
-            cta = "Manage leave",
-            artIcon = Icons.Outlined.EventAvailable,
-            artBg = LLColors.Steel,
-            artFg = androidx.compose.ui.graphics.Color.White,
-            onClick = onLeaveManagement,
-        )
+            Tile(
+                eyebrow = "",
+                title = "Warnings & Performance",
+                copy = "Manage staff warnings and performance notes.",
+                cta = "View records",
+                artIcon = Icons.Outlined.Warning,  // You may want a different icon
+                artBg = LLColors.Bad,
+                artFg = androidx.compose.ui.graphics.Color.White,
+                onClick = onWarnings,
+            )
+            Tile(
+                eyebrow = "",
+                title = "Leave Management",
+                copy = "Review balances, approve requests, and log time off.",
+                cta = "Manage leave",
+                artIcon = Icons.Outlined.EventAvailable,
+                artBg = LLColors.Steel,
+                artFg = androidx.compose.ui.graphics.Color.White,
+                onClick = onLeaveManagement,
+            )
 
-        Tile(
-            eyebrow = "",
-            title = "Onboarding & Offboarding",
-            copy = "Track checklists for staff joining and leaving the team.",
-            cta = "View checklists",
-            artIcon = Icons.Outlined.SwitchAccount,
-            artBg = LLColors.CopperSoft,
-            artFg = LLColors.CopperDeep,
-            onClick = onOnboardingOffboarding,
-        )
+            Tile(
+                eyebrow = "",
+                title = "Onboarding & Offboarding",
+                copy = "Track checklists for staff joining and leaving the team.",
+                cta = "View checklists",
+                artIcon = Icons.Outlined.SwitchAccount,
+                artBg = LLColors.CopperSoft,
+                artFg = LLColors.CopperDeep,
+                onClick = onOnboardingOffboarding,
+            )
         }
 
         Tile(
